@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.board.mapper.BoardMapper">
+
+	<select id="boardList" resultType="kr.board.entity.Board">
+		select * from board order by indate desc
+	</select>
+	
+	<!-- memID 추가 -->
+	<insert id="boardInsert" parameterType="kr.board.entity.Board">
+		insert into board(memID,title,content,writer)
+		values(#{memID},#{title},#{content},#{writer})
+	</insert>
+	
+	<select id="boardContent" parameterType="int" resultType="kr.board.entity.Board">
+		select * from board where idx = #{idx}	
+	</select>
+	
+	<delete id="boardDelete" parameterType="int">
+		delete from board where idx = #{idx}
+	</delete>
+	
+	<update id="boardUpdate" parameterType="kr.board.entity.Board">
+		update board
+		set title = #{title}, content = #{content}
+		where idx = #{idx}
+	</update>
+
+
+</mapper>
+
+
+
+
+
+
+
